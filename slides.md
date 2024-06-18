@@ -1,6 +1,6 @@
 ---
 # try also 'default' to start simple
-theme: seriph
+theme: default
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
@@ -24,9 +24,9 @@ transition: slide-left
 mdc: true
 ---
 
-# Welcome to Slidev
+# Frida Stack v1
 
-Presentation slides for developers
+
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
@@ -52,22 +52,26 @@ The last comment block of each slide will be treated as slide notes. It will be 
 transition: fade-out
 ---
 
-# What is Slidev?
+# Web dev en 2024
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+El ecosistema web cambia mucho y muy rápido. Siempre salen nuevos frameworks y nuevas formas de resolver problemas. Aqui un breve overview de los últimos trends:
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
+- 📝 **SSR** - Server side rendering. Paradigma popularizado por Vercel y Next.js
+- 📝 **No client-side JS** - Minimizar la cantidad de javascript en el cliente. *optimización*
+- 🎨 **DX** - La Developer Experience ahora es considerada muy importante en el desarrollo de aplicaciones.
+- 🧑‍💻 **TS** - TypeScript elimina las debilidades de JavaScript y mejora DX.
+- 🤹 **Frontend Libraries/Frameworks** - <span v-mark.circle.orange="2">React</span>, Vue, Angular, Svelte, Quik, Preact, HTMX, etc.
+- 📤 **CSS?** - Tailwind CSS, UnoCSS, StyleX, (❌ styled components)
+- <span v-mark.red="1">🎥 **Data fetching** - Client side vs Server side</span>
+- 🛠 **Manage State** - Realmente necesario?
+- 🛠 **SOON: React Compiler** - Adios useCallback y useMemo
+- 
+
 
 <br>
 <br>
 
-Read more about [Why Slidev?](https://sli.dev/guide/why)
+¡Más detalles muy pronto!
 
 <!--
 You can have `style` tag in markdown to override the style for the current page.
@@ -95,34 +99,67 @@ transition: slide-up
 level: 2
 ---
 
-# Navigation
+# Data fetching en React
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
+> *You can use an Effect to fetch data for your component. Note that if you use a framework, using your framework’s data fetching mechanism will be a lot more efficient than writing Effects manually.*
+>
+Atte. The React Team
 
-## Keyboard Shortcuts
+---
+transiton: slide-up
+---
 
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
+# Cómo utilizamos useEffect nosotros?
+Así aprendimos a conectarnos con una API en React.
 
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+
+```ts
+function Bookmarks({ category }) {
+  const [data, setData] = useState([])
+  const [error, setError] = useState()
+
+  useEffect(() => {
+    fetch(`${endpoint}/${category}`)
+      .then(res => res.json())
+      .then(d => setData(d))
+      .catch(e => setError(e))
+  }, [category])}
+```
+
+El problema es que este código tiene errores que no son fáciles de cachar de primeras
+
+---
+transiton: slide-up
+---
+
+# Los problemas con el código anterior
+
+* <span class="text-color-purple-400">Race conditions</span> - las requests funcionan de tal manera de que llegan en diferente orden a como se hicieron.
+  * Si
+* Loading state - mostrar al usuario que se está cargando el request
+
+::right::
+
+```ts
+function Bookmarks({ category }) {
+  const [data, setData] = useState([])
+  const [error, setError] = useState()
+
+  useEffect(() => {
+    fetch(`${endpoint}/${category}`)
+      .then(res => res.json())
+      .then(d => setData(d))
+      .catch(e => setError(e))
+  }, [category])}
+```
 
 ---
 layout: two-cols
 layoutClass: gap-16
 ---
 
-# Table of contents
+# Race conditions
+
 
 You can use the `Toc` component to generate a table of contents for your slides:
 
