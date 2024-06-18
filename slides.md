@@ -95,42 +95,25 @@ Here is another comment.
 -->
 
 ---
+src: ./pages/about-useEffect.md
 transition: slide-up
-level: 2
 ---
 
-# Data fetching en React
-
-> *You can use an Effect to fetch data for your component. Note that if you use a framework, using your framework’s data fetching mechanism will be a lot more efficient than writing Effects manually.*
->
-Atte. The React Team
 
 ---
+src: ./pages/data-fetching-in-react.md
 transiton: slide-up
 ---
 
-# Cómo utilizamos useEffect nosotros?
-Así aprendimos a conectarnos con una API en React.
-
-
-```ts
-function Bookmarks({ category }) {
-  const [data, setData] = useState([])
-  const [error, setError] = useState()
-
-  useEffect(() => {
-    fetch(`${endpoint}/${category}`)
-      .then(res => res.json())
-      .then(d => setData(d))
-      .catch(e => setError(e))
-  }, [category])}
-```
-
-El problema es que este código tiene errores que no son fáciles de cachar de primeras
+---
+src: ./pages/nuestro-panorama.md
+transition: fade-out
+---
 
 ---
-transiton: slide-up
+src: ./pages/tanstack-query.md
 ---
+
 
 # Los problemas con el código anterior
 
