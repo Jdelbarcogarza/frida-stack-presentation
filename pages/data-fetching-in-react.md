@@ -57,5 +57,5 @@ backgroundSize: contain
 
 <br>
 
-Con todo lo que conlleva hacer un request en una SPA, los nuevos paradigmas han incluso desaparecido ciertas debilidades que por naturaleza tienen las full client-side apps.
+Con todo lo que conlleva hacer un request en una SPA, los nuevos paradigmas han incluso minimizado o desaparecido desventajas que por naturaleza tienen las full client-side apps.
 

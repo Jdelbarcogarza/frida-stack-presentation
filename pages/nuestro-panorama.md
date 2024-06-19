@@ -18,3 +18,4 @@ function Bookmarks({ category }) {
   // Return JSX based on data and error state
 }
 ```
+[Veamos como resolvemos](https://tkdodo.eu/blog/why-you-want-react-query)
