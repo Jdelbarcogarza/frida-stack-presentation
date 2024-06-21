@@ -1,6 +1,6 @@
 
 # ¿Cómo se ven nuestros *useEffect*?
-Basicamente se ven así.
+En varios proyectos tenemos este mismo patrón de una u otra forma.
 
 
 ```ts 
@@ -19,3 +19,5 @@ function Bookmarks({ category }) {
 }
 ```
 [Veamos como resolvemos](https://tkdodo.eu/blog/why-you-want-react-query)
+
+

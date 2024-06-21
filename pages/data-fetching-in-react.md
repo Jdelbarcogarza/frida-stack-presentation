@@ -10,14 +10,14 @@
 ### **¿Cómo se comporta un fetch dentro de useEffect?**
 Esto es lo que sucede realmente en un primer render
 
-1. Primero se cargará el HTML
-2. Luego de descargará todo el JavaScript
-3. Se renderiza la app
+1. <span v-click>Primero se cargará el HTML de la ruta que visitamos</span>
+2. <span v-click>Luego se descargará todo el JavaScript que necesita esa página</span>
+3. <span v-click>Se renderiza la app (Recordemos react necesita JS)</span>
 
-*oh no* El cliente se da cuenta que debe hacer un fetch para traer la información para que funcione la app!!
+<span v-click>*oh no* El cliente se da cuenta que debe hacer un fetch para traer la información para que funcione la app!!</span>
 
-4. Hacer el fetch a la API para traer la información 
-5. (extra) actualizar estado para mostrar datos en la app
+4. <span v-click>Hacer el fetch a la API para traer la información</span>
+5. <span v-click>(extra) actualizar estado para mostrar datos en la app</span>
 
 <!-- 
 Puedes usar useEffect para hacer data fetching en tu componente. Pero es importante recalcar que si utilizas un framework, el mecanismo de data fetching será mucho más eficiente que escrbir useEffects manualmente -->
@@ -37,12 +37,16 @@ El comportamiento anterior es "lento" porque todo se hace del lado del cliente y
 Otros "caveats" que tiene el `useEffect` son:
 1. *network waterfalls* (ver imágen)
 <!-- recalcar que en la imágen las API calls son lo último que se "manda a llamar" -->
-2. Los useEffects no hacen un preload ni hacen *data caching*
+2. Los useEffects no hacen un *preload* ni hacen *data caching*
 3. Race conditions
 
 <br>
 
-Escribir un `useEffect` que hace data fetching y no sufra de estos problemas es complicado (mala DX) y NO ES NECESARIO.
+<span v-click>
+
+Escribir un `useEffect` que hace data fetching y no sufra de estos problemas es complicado y tedioso (mala DX) y NO ES NECESARIO.
+
+</span>
 
 
 
